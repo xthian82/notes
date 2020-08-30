@@ -4,11 +4,12 @@ import { OktaAuthService } from '@okta/okta-angular';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'notes';
-  isAuthenticated: boolean = false;
+  title = 'Notes';
+  isAuthenticated: boolean;
+  isCollapsed = true;
 
   constructor(public oktaAuth: OktaAuthService) {
   }
