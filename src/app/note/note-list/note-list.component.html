@@ -23,9 +23,9 @@
         <table class="table table-centered table-hover mb-0" id="datatable">
           <thead>
             <tr>
-              <th class="border-top-0" scope="col">Id</th>
-              <th class="border-top-0" scope="col">Title</th>
-              <th class="border-top-0" scope="col">Text</th>
+              <th class="border-top-0" scope="col">#</th>
+              <th class="border-top-0" scope="col" sortable="title" (sort)="onSort($event)">Title</th>
+              <th class="border-top-0" scope="col" sortable="text" (sort)="onSort($event)">Text</th>
               <th class="border-top-0" scope="col" style="width:120px"></th>
             </tr>
           </thead>
@@ -41,6 +41,24 @@
             </tr>
           </tbody>
         </table>
+        <div class="d-flex justify-content-between p-2">
+          <ngb-pagination [maxSize]="10"
+                          [collectionSize]="total$ | async"
+                          [(page)]="filter.page"
+                          [pageSize]="filter.size"
+                          (pageChange)="onPageChange(filter.page)">
+
+          </ngb-pagination>
+          <select name="pageSize"
+                  style="width: auto"
+                  [(ngModel)]="filter.size"
+                  (ngModelChange)="onChange(filter.size)"
+                  class="custom-select">
+            <option [ngValue]="10">10 items per page</option>
+            <option [ngValue]="20">20 items per page</option>
+            <option [ngValue]="100">100 items per page</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
